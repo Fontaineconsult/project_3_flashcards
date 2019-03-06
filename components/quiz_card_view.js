@@ -1,0 +1,1 @@
+// possibly contains question, hidden answer, button to show answer. Is an endpoint, won't interact with redux or other components

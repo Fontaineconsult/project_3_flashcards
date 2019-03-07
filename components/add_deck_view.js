@@ -1,8 +1,8 @@
 // contains form to add new deck, routes to new deck after created
 
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import {dispatchAddDeck}from "../actions/shared"
 
 
 
@@ -20,6 +20,11 @@ class AddDeckForm extends React.Component {
 
       }))
     };
+    addDeck = () => {
+
+        dispatchAddDeck(this.state.input)
+
+    };
 
     render() {
         return (
@@ -28,6 +33,7 @@ class AddDeckForm extends React.Component {
                     value={this.state.input}
                     onChangeText={this.updateTextInput}
                 />
+                <Button title="Add Deck" onPress={this.addDeck}/>
             </View>
         )
 

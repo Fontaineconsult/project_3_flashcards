@@ -1,6 +1,6 @@
+import { ADD_DECK } from '../actions/actions'
 
-
-function deck (state={}, action) {
+export default function deckReducer (state={}, action) {
 
 
     switch (action.type) {
@@ -8,7 +8,8 @@ function deck (state={}, action) {
         case ADD_DECK:
 
             return {
-                ...state
+                ...state,
+                ...action.new_deck
 
             }
 

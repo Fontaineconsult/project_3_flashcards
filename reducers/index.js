@@ -1,17 +1,27 @@
-import { ADD_DECK } from '../actions/actions'
+import { ADD_DECK, ADD_CARD } from '../actions/actions'
 
-export default function deckReducer (state={}, action) {
+import {combineReducers} from "redux";
+
+function decksReducer (state={}, action) {
 
 
     switch (action.type) {
 
         case ADD_DECK:
-
+            console.log("hit add deck reducer", action)
             return {
                 ...state,
-                ...action.new_deck
+                ...action.deck
 
-            }
+            };
+
+
+        case ADD_CARD:
+            return state
+
+
+        default: return state
+
 
     }
 
@@ -19,3 +29,13 @@ export default function deckReducer (state={}, action) {
 
 
 }
+
+
+
+
+
+export default combineReducers({
+
+    decks: decksReducer,
+
+})

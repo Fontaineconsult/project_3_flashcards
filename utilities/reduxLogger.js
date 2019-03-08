@@ -1,4 +1,9 @@
 
+import thunk from 'redux-thunk';
+import { applyMiddleware } from 'redux'
+
+
+
 const logger = store => next => action => {
     console.group(action.type)
     console.info('dispatching', action)
@@ -7,9 +12,6 @@ const logger = store => next => action => {
     console.groupEnd()
     return result
 };
-
-import thunk from 'redux-thunk';
-import { applyMiddleware } from 'redux'
 
 
 export default applyMiddleware(

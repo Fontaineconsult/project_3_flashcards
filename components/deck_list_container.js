@@ -1,35 +1,33 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+import { connect } from 'react-redux'
 
 
 class DeckListItem extends React.Component {
     render(){
         return(
             <View style={styles.container}>
-                <Text>Deck 1</Text>
-                
-
+                <Text>{this.props.deck.deck_name}</Text>
             </View>
-
         )
 
     }
 
-
 }
 
 
-
-
-
-export default class DeckListView extends React.Component {
+class DeckListView extends React.Component {
 
 
     render() {
+        console.log("DEERRPPP", this.props.decks)
         return(
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-                <DeckListItem/>
+                {Object.keys(this.props.decks).map((id) =>(
+                    <DeckListItem key={this.props.decks[id].deck_id} deck={this.props.decks[id]}  />
+                ))}
+                <Text>FARTS</Text>
+
             </View>
 
         )
@@ -51,3 +49,13 @@ const styles = StyleSheet.create({
         maxHeight: 80
     },
 });
+
+
+function mapStateToProps({decks}) {
+    return {
+        decks
+    }
+
+}
+
+export default connect(mapStateToProps)(DeckListView)

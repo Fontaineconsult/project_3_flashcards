@@ -6,18 +6,18 @@ import { Provider } from 'react-redux'
 import { StatusBar } from 'react-native';
 import deckReducer from "./reducers"
 import applyMiddleware from "./utilities/reduxLogger"
-
+import combineReducers from './reducers/index'
 
 export default class App extends React.Component {
   render() {
     return (
-        <Provider store={createStore(deckReducer, applyMiddleware)}>
-      <View style={styles.container}>
-        <StatusBar/>
-        <MainViewContainer/>
+        <Provider store={createStore(combineReducers, applyMiddleware)}>
+          <View style={styles.container}>
+            <StatusBar/>
+            <MainViewContainer/>
 
 
-      </View>
+          </View>
         </Provider>
     );
   }

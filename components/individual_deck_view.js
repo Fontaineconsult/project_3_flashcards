@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 
-class IndividialDeckView extends React.Component {
+export class IndividialDeckView extends React.Component {
 
     render() {
         return(

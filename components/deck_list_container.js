@@ -1,13 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { connect } from 'react-redux'
-
+import { createStackNavigator } from 'react-navigation';
+import {IndividialDeckView} from './individual_deck_view'
 
 class DeckListItem extends React.Component {
     render(){
         return(
             <View style={styles.container}>
                 <Text>{this.props.deck.deck_name}</Text>
+                <Button title={"Go To Deck"} onPress={() => navigation.navigate()}/>
             </View>
         )
 
@@ -35,6 +37,22 @@ class DeckListView extends React.Component {
 
 
 }
+
+
+const Stack = createStackNavigator({
+
+    Home:{
+        screen: DeckListView,
+
+    },
+    Dashboard: {
+        screen:IndividialDeckView
+    }
+
+})
+
+
+
 
 const styles = StyleSheet.create({
     container: {

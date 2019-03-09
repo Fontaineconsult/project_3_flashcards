@@ -1,15 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { connect } from 'react-redux'
-import { createStackNavigator } from 'react-navigation';
-import {IndividialDeckView} from './individual_deck_view'
+
 
 class DeckListItem extends React.Component {
     render(){
+        console.log("EPLER", this.props);
         return(
             <View style={styles.container}>
                 <Text>{this.props.deck.deck_name}</Text>
-                <Button title={"Go To Deck"} onPress={() => navigation.navigate()}/>
+                <Button title={"Go To Deck"} onPress={() => this.props.navProp.navigate('IndividualDeckView', { entryId: this.props.deck.deck_id})}/>
             </View>
         )
 
@@ -18,15 +18,20 @@ class DeckListItem extends React.Component {
 }
 
 
+
+
 class DeckListView extends React.Component {
 
 
     render() {
-        console.log("DEERRPPP", this.props.decks)
+        console.log("DEERRPPP", this.props)
         return(
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
                 {Object.keys(this.props.decks).map((id) =>(
-                    <DeckListItem key={this.props.decks[id].deck_id} deck={this.props.decks[id]}  />
+                    <DeckListItem
+                        key={this.props.decks[id].deck_id} deck={this.props.decks[id]}
+                        navProp={this.props.navigation}
+                    />
                 ))}
                 <Text>FARTS</Text>
 
@@ -39,17 +44,6 @@ class DeckListView extends React.Component {
 }
 
 
-const Stack = createStackNavigator({
-
-    Home:{
-        screen: DeckListView,
-
-    },
-    Dashboard: {
-        screen:IndividialDeckView
-    }
-
-})
 
 
 

@@ -2,11 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
-
-
-
-
-
+import dispatchAddCard from "../actions/shared"
 
 
 
@@ -34,6 +30,10 @@ class AddCardView extends React.Component {
         }))
     };
 
+    addCard = () => {
+
+      this.props.dispatch(dispatchAddCard())
+    };
 
 
     render() {

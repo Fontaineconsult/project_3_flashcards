@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
-import dispatchAddCard from "../actions/shared"
+import {dispatchAddCard} from "../actions/shared"
 
 
 
@@ -31,13 +31,16 @@ class AddCardView extends React.Component {
     };
 
     addCard = () => {
+      const card = {deck_id:this.props.navigation.state.params.entryId,
+                    question:this.state.question,
+                    answer: this.state.answer}
 
-      this.props.dispatch(dispatchAddCard())
+      this.props.dispatch(dispatchAddCard(card))
     };
 
 
     render() {
-        console.log("ERPEORER", this.props)
+
         return(
             <View>
                 <Text>Card View</Text>
@@ -50,7 +53,7 @@ class AddCardView extends React.Component {
                     value={this.state.answer}
                     onChangeText={this.updateAnswerInput}
                 />
-                <Button title="Add Card" onPress={this.addDeck}/>
+                <Button title="Add Card" onPress={this.addCard}/>
 
 
             </View>

@@ -25,6 +25,7 @@ export function addCard(card) {
 
     return {
         type: ADD_CARD,
+        deck: card.deck_id,
         card: {[card_id]: {card_id:card_id, card_question: card.question, card_answer: card.answer} }
 
     }

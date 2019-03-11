@@ -16,6 +16,7 @@ export function dispatchAddDeck(deck) {
 }
 
 export function dispatchAddCard(card) {
+    console.log("CARD TO ADD", card)
     return(dispatch) => {
         dispatch(addCard(card))
     }

@@ -8,7 +8,7 @@ function decksReducer (state={}, action) {
     switch (action.type) {
 
         case ADD_DECK:
-            console.log("hit add deck reducer", action)
+
             return {
                 ...state,
                 ...action.deck
@@ -17,7 +17,12 @@ function decksReducer (state={}, action) {
 
 
         case ADD_CARD:
-            return state
+            return {
+                ...state,
+                [action.deck]: {...state[action.deck], cards: state[action.deck].cards.concat(action.card)}
+
+
+            };
 
 
         default: return state

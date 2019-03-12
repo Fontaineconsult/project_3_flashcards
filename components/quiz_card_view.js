@@ -16,6 +16,7 @@ function CardAtIndex(props) {
     return(
         <View>
             <Text>{props.card[key].card_question}</Text>
+            <Text>{props.card[key].card_answer}</Text>
         </View>
 
 
@@ -43,7 +44,7 @@ class QuizView extends React.Component {
     };
 
     render(){
-        console.log("THESHUFFLEDECK",this.props.shuffledDeck)
+
         return(
             <View>
                 <Text>Quiz View</Text>

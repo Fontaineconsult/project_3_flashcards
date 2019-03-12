@@ -11,7 +11,7 @@ import AddDeckForm from './add_deck_form'
 class AddDeckView extends React.Component {
 
     render() {
-        console.log("The decks", this.props.decks, "the state")
+
         return(
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>Add Deck View</Text>

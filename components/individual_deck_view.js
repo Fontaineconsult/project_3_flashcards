@@ -27,7 +27,7 @@ function GoToQuizButton(props) {
 
 
 function CardsInDeckCounter(props) {
-    console.log("COUNTER PROPS", props.deck.cards)
+
     const DeckSize = props.deck.cards.length
     return(
         <View>

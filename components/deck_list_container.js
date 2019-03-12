@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 class DeckListItem extends React.Component {
     render(){
-        console.log("EPLER", this.props);
+
         return(
             <View style={styles.container}>
                 <Text>{this.props.deck.deck_name}</Text>
@@ -24,7 +24,7 @@ class DeckListView extends React.Component {
 
 
     render() {
-        console.log("DEERRPPP", this.props)
+
         return(
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
                 {Object.keys(this.props.decks).map((id) =>(

@@ -8,8 +8,6 @@ import IndividualDeckView from "./individual_deck_view";
 import AddCardView from "./add_card_view"
 import QuizViewContainer from "./quiz_view_container"
 
-const Hello = () => (<View><Text>Hello</Text></View>)
-const Goodbye = () => (<View><Text>Goodbye</Text></View>)
 
 const NavTab = createBottomTabNavigator({
     Decks: DeckListView,
@@ -39,10 +37,6 @@ const Stack = createStackNavigator({
 
 
 const App = createAppContainer(Stack)
-
-
-
-
 
 
 

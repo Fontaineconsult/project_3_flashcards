@@ -11,10 +11,9 @@ export default class CardAtIndex extends React.Component {
         givenAnswer:''
 
 
-    }
+    };
 
-    key_obj = Object.keys(this.props.card);
-    key = this.key_obj[0];
+
 
     toggleShowAnswer = () => {
 
@@ -26,12 +25,14 @@ export default class CardAtIndex extends React.Component {
 
 
     render() {
+
+
         return(
             <View>
-                <Text>{this.props.card[this.key].card_question}</Text>
-                {this.state.answerVisible && (<Text>{this.props.card[this.key].card_answer}</Text>)}
+                <Text>{this.props.card[Object.keys(this.props.card)[0]].card_question}</Text>
+                {this.state.answerVisible && (<Text>{this.props.card[Object.keys(this.props.card)[0]].card_answer}</Text>)}
                 {!this.state.answerVisible && (<Text>Answer Hidden</Text>)}
-                <Button title={"Show Answer"} onPress={this.toggleShowAnswer}/>
+                <Button title={ this.state.answerVisible === false ? "Show Answer" : "Hide Answer"} onPress={this.toggleShowAnswer}/>
 
 
             </View>

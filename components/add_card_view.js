@@ -36,6 +36,12 @@ class AddCardView extends React.Component {
                     answer: this.state.answer}
 
       this.props.dispatch(dispatchAddCard(card))
+      this.setState(() => ({
+            question: "",
+            answer: "",
+
+        }))
+
     };
 
 

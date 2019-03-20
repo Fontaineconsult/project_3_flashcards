@@ -41,7 +41,6 @@ function CardsInDeckCounter(props) {
 class IndividualDeckView extends React.Component {
 
     render() {
-
         return(
             <View>
                 <Text>Deck view</Text>

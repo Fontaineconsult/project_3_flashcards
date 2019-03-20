@@ -13,8 +13,6 @@ export default class CardAtIndex extends React.Component {
 
     };
 
-
-
     toggleShowAnswer = () => {
 
       this.setState({
@@ -33,8 +31,6 @@ export default class CardAtIndex extends React.Component {
                 {this.state.answerVisible && (<Text>{this.props.card[Object.keys(this.props.card)[0]].card_answer}</Text>)}
                 {!this.state.answerVisible && (<Text>Answer Hidden</Text>)}
                 <Button title={ this.state.answerVisible === false ? "Show Answer" : "Hide Answer"} onPress={this.toggleShowAnswer}/>
-
-
             </View>
 
 

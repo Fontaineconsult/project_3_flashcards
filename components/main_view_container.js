@@ -21,7 +21,6 @@ const Stack = createStackNavigator({
 
     Home:{
         screen: NavTab,
-
     },
     IndividualDeckView: {
         screen:IndividualDeckView
@@ -44,10 +43,10 @@ export default class MainViewContainer extends React.Component {
 
     render() {
         return(
-            <View stle={{ flex: 1, justifyContent: 'center', alignItems: 'stretch' }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'stretch' }}>
 
                 <Text>TEXT fds fsdf d fd sfsd fdsssddsfs dsdfdsfdsfsdfsdfsdfsdffsdfs fs</Text>
-                <App stle={{ flex: 2, justifyContent: 'center', alignItems: 'stretch', alignSelf:"stretch" }}/>
+                <App style={{ flex: 2, justifyContent: 'center', alignItems: 'stretch', alignSelf:"stretch" }}/>
             </View>
     )
     }

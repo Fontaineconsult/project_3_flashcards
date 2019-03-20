@@ -17,12 +17,13 @@ class QuizViewContainer extends React.Component {
 
 
     render(){
+        console.log("DEPREREPEREER", this.props)
         return(
             <View>
                 <Text>Quiz View Container</Text>
                 <Text>{this.props.decks[this.props.navigation.state.params.entryId].deck_name}</Text>
                 <Button title={"Start"} onPress={this.StartQuiz}/>
-                <QuizView deck_id = {this.props.navigation.state.params.entryId}/>
+                <QuizView navigation={this.props.navigation} deck_id={this.props.navigation.state.params.entryId}/>
 
 
             </View>

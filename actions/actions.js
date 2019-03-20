@@ -6,9 +6,7 @@ function generateUID () {
 }
 
 
-export  function addDeck (new_deck) {
-
-    let deck_id = generateUID()
+export  function addDeck (deck_obj, deck_id) {
 
     return {
         type: ADD_DECK,

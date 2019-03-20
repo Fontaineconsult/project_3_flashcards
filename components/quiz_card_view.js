@@ -95,32 +95,33 @@ class QuizView extends React.Component {
 
         this.setState({
             deck: YatesShuffle(this.props.shuffledDeck)
-
         })
     }
 
     render(){
-        console.log("DECKLENGTH", this.props.deckLength)
+
         return(
 
             <View>
                 <Text>Quiz View</Text>
 
-
                 {!this.state.deckAtEOL && (<CardAtIndex card={this.props.shuffledDeck[this.state.index]}/>)}
                 {this.state.deckAtEOL && (<Button title={"Show Score"} onPress={this.toggleFinalScoreView}/>)}
+                {!this.state.showFinalScoreView && (<Text>{this.props.deckLength - (this.state.correctAnswer + this.state.incorrectAnswer)}  Cards Remaining</Text>)}
+
                 {!this.state.deckAtEOL && (<TextInput
                     value={this.state.givenAnswer}
                     onChangeText={this.updateQuestionInput}
                 />)}
-
                 {this.state.showFinalScoreView && (<FinalScoreView correct={this.state.correctAnswer}
                                                                    incorrect={this.state.incorrectAnswer}/>)}
-
-                {this.state.showFinalScoreView && (<Button title={"Reset Quiz"} onPress={this.resetQuiz}/>)}
+                {this.state.showFinalScoreView && (<Button title={"Restart Quiz"} onPress={this.resetQuiz}/>)}
+                {this.state.showFinalScoreView && (<Button title={"Back to Deck"} onPress={() => this.props.navigation.navigate("IndividualDeckView", { entryId: this.props.deck_id})}/>)}
                 {!this.state.deckAtEOL && (<Button title={"Correct"} onPress={this.answerCorrect}/>)}
                 {!this.state.deckAtEOL && (<Button title={"Incorrect"} onPress={this.answerIncorrect}/>)}
+
             </View>
+
 
 
         )
@@ -132,9 +133,9 @@ class QuizView extends React.Component {
 
 
 function mapStateToProps({decks}, ownProps) {
-    const shuffledDeck = decks[ownProps.deck_id].cards
-    const deckLength = decks[ownProps.deck_id].cards.length
-    console.log(ownProps)
+    const shuffledDeck = decks[ownProps.deck_id].cards;
+    const deckLength = decks[ownProps.deck_id].cards.length;
+    console.log(ownProps);
     return ({shuffledDeck, deckLength})
 }
 

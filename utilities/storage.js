@@ -3,6 +3,19 @@ const ASYNC_STORAGE_KEY = "FlashCards:deck";
 
 
 
+export function getAllDecks() {
+
+    return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((results) => {
+        return JSON.parse(results)
+
+
+    })
+
+
+
+}
+
+
 export function saveDeckToAsync (deck, key) {
 
     return AsyncStorage.mergeItem(ASYNC_STORAGE_KEY, JSON.stringify({
@@ -12,8 +25,39 @@ export function saveDeckToAsync (deck, key) {
     
 }
 
-export function addCard() {
+export function saveCardToStorage(deck_key, card) {
+
+    return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((results) => {
+
+        const data = JSON.parse(results)
+        let deck = data[deck_key]
+        deck[deck_key].cards.push(card)
+        let deck_to_return = {[deck_key]:deck}
+        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify( deck_to_return ))
+        return true
+    }).catch(console.log("Isn't Right"))
 
 
+
+
+}
+
+export function queryStorage() {
+
+    //https://stackoverflow.com/questions/38570188/react-native-how-to-see-whats-stored-in-asyncstorage
+    AsyncStorage.getAllKeys((err, keys) => {
+        AsyncStorage.multiGet(keys, (error, stores) => {
+            stores.map((result, i, store) => {
+                console.log({ [store[i][0]]: store[i][1] });
+                return true;
+            });
+        });
+    });
+}
+
+
+export function clearAsyncStorage() {
+
+    AsyncStorage.clear();
 
 }

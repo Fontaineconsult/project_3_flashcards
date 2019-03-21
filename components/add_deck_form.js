@@ -23,7 +23,7 @@ class AddDeckForm extends React.Component {
     };
     addDeck = () => {
         let deck_id = generateUID()
-        console.log("FIRSTDECKIDDD", deck_id)
+
         this.props.dispatch(dispatchAddDeck(this.state.input, deck_id))
         this.props.props.navigation.navigate("IndividualDeckView", { entryId: deck_id})
 
@@ -32,10 +32,11 @@ class AddDeckForm extends React.Component {
 
 
     render() {
-        console.log("DERRPPP", this.props)
+
         return (
 
             <View>
+
                 <TextInput
                     value={this.state.input}
                     onChangeText={this.updateTextInput}

@@ -23,15 +23,13 @@ class QuizView extends React.Component {
     };
 
     incrementIndex = () => {
-
         if (this.state.index === this.props.deckLength - 1) {
-            console.log("Gooiingg Uppp", this.state.index)
+
             this.setState({
                 deckAtEOL: true
             })
 
         } else {
-            console.log("Gooiingg Uppp", this.state.index)
             this.setState({
 
                 index: this.state.index + 1
@@ -135,7 +133,7 @@ class QuizView extends React.Component {
 function mapStateToProps({decks}, ownProps) {
     const shuffledDeck = decks[ownProps.deck_id].cards;
     const deckLength = decks[ownProps.deck_id].cards.length;
-    console.log(ownProps);
+
     return ({shuffledDeck, deckLength})
 }
 

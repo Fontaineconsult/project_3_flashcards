@@ -17,7 +17,7 @@ class QuizViewContainer extends React.Component {
 
 
     render(){
-        console.log("DEPREREPEREER", this.props)
+
         return(
             <View>
                 <Text>Quiz View Container</Text>

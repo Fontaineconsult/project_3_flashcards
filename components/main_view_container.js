@@ -7,7 +7,7 @@ import DeckListView from './deck_list_container'
 import IndividualDeckView from "./individual_deck_view";
 import AddCardView from "./add_card_view"
 import QuizViewContainer from "./quiz_view_container"
-
+import {getAllDecks} from "../utilities/storage"
 
 const NavTab = createBottomTabNavigator({
     Decks: DeckListView,
@@ -40,6 +40,12 @@ const App = createAppContainer(Stack)
 
 
 export default class MainViewContainer extends React.Component {
+
+
+    componentDidMount() {
+
+        getAllDecks()
+    }
 
     render() {
         return(

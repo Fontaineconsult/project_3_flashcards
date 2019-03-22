@@ -3,17 +3,22 @@ const ASYNC_STORAGE_KEY = "FlashCards:deck";
 
 
 
-export function getAllDecks() {
+export async function getAllDecks() {
 
-    return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((results) => {
-        return JSON.parse(results)
+        let value = await AsyncStorage.getItem("FlashCards:deck").then(value => {
+            console.log("DAT RAW VALUES", JSON.parse(value))
+            return JSON.parse(value)
+        })
 
-
-    })
+        return value
 
 
 
 }
+
+
+
+
 
 
 export function saveDeckToAsync (deck, key) {

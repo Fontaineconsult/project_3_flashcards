@@ -1,4 +1,4 @@
-import { ADD_DECK, ADD_CARD } from '../actions/actions'
+import { ADD_DECK, ADD_CARD, LOAD_DECKS } from '../actions/actions'
 
 import {combineReducers} from "redux";
 
@@ -24,6 +24,13 @@ function decksReducer (state={}, action) {
 
             };
 
+        case LOAD_DECKS:
+
+            return {
+                ...state,
+                ...action.decks
+
+            };
 
         default: return state
 

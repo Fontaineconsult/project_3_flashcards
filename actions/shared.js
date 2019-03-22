@@ -1,12 +1,29 @@
-import { addDeck, addCard } from './actions'
+import { addDeck, addCard, loadDecks } from './actions'
 import {saveDeckToAsync, queryStorage, saveCardToStorage, getAllDecks} from '../utilities/storage'
 import {generateUID} from "../utilities/deckObject";
 
 
 export function loadDecksFromStorage() {
 
-    const decks = getAllDecks();
-    console.log("DECKS TO LOAD", decks)
+    queryStorage();
+    return (dispatch) => {
+        return getAllDecks().then((decks) => {
+
+            let obj_for_redux = {}
+
+            Object.keys(decks).forEach(key => {
+               obj_for_redux[ key ] = decks[key][key]
+            });
+            console.log("NEW OBHECT", obj_for_redux)
+
+            dispatch(loadDecks(obj_for_redux))
+
+        })
+
+    }
+
+
+
 
 
 }

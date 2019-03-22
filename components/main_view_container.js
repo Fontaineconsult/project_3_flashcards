@@ -7,7 +7,9 @@ import DeckListView from './deck_list_container'
 import IndividualDeckView from "./individual_deck_view";
 import AddCardView from "./add_card_view"
 import QuizViewContainer from "./quiz_view_container"
-import {getAllDecks} from "../utilities/storage"
+import {loadDecksFromStorage} from "../actions/shared"
+import { connect } from 'react-redux'
+import {clearAsyncStorage} from "../utilities/storage"
 
 const NavTab = createBottomTabNavigator({
     Decks: DeckListView,
@@ -39,12 +41,15 @@ const App = createAppContainer(Stack)
 
 
 
-export default class MainViewContainer extends React.Component {
+class MainViewContainer extends React.Component {
 
 
     componentDidMount() {
 
-        getAllDecks()
+        let all_decks = loadDecksFromStorage()
+
+        this.props.dispatch(all_decks)
+
     }
 
     render() {
@@ -60,3 +65,9 @@ export default class MainViewContainer extends React.Component {
 
 }
 
+
+function mapStateToProps({state}) {
+    return{state}
+}
+
+export default connect(mapStateToProps)(MainViewContainer)

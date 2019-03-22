@@ -1,6 +1,6 @@
 export const ADD_DECK = 'ADD_DECK'
 export const ADD_CARD = 'ADD_CARD'
-
+export const LOAD_DECKS = "LOAD_DECKS"
 
 
 
@@ -27,4 +27,15 @@ export function addCard(deck_id, card) {
 
     }
     
+}
+
+export function loadDecks(decks) {
+
+    return {
+        type: LOAD_DECKS,
+        decks: decks
+
+
+    }
+
 }

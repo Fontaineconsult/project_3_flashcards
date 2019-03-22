@@ -1,7 +1,7 @@
 // main view is the primary view, contains list of all the decks
-import {createBottomTabNavigator, createAppContainer, createStackNavigator} from 'react-navigation'
+import {createBottomTabNavigator, createAppContainer, createStackNavigator, SafeAreaView} from 'react-navigation'
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StatusBar, StyleSheet, Text, View, Platform} from 'react-native';
 import AddDeckView from './add_deck_view'
 import DeckListView from './deck_list_container'
 import IndividualDeckView from "./individual_deck_view";
@@ -43,6 +43,8 @@ const App = createAppContainer(Stack)
 
 class MainViewContainer extends React.Component {
 
+    height = (Platform.OS === 'android') ? 20 : 15
+
 
     componentDidMount() {
 
@@ -54,16 +56,36 @@ class MainViewContainer extends React.Component {
 
     render() {
         return(
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'stretch' }}>
 
-                <Text>TEXT fds fsdf d fd sfsd fdsssddsfs dsdfdsfdsfsdfsdfsdfsdffsdfs fs</Text>
-                <App style={{ flex: 2, justifyContent: 'center', alignItems: 'stretch', alignSelf:"stretch" }}/>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'stretch', height: this.height }}>
+                <StatusBar/>
+                <View style={{height: this.height}}/>
+                <Text style={styles.textTitle}>Your cool guy cards</Text>
+                <App/>
             </View>
+
     )
     }
 
 
 }
+
+
+const styles = StyleSheet.create({
+    textTitle: {
+        paddingTop: 15,
+        textAlign: 'center',
+        fontSize: 18,
+
+
+
+    }
+
+
+});
+
+
+
 
 
 function mapStateToProps({state}) {

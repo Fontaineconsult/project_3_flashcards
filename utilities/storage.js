@@ -18,14 +18,15 @@ export async function getAllDecks() {
 
 
 
-
-
-
 export function saveDeckToAsync (deck, key) {
 
-    return AsyncStorage.mergeItem(ASYNC_STORAGE_KEY, JSON.stringify({
-        [key]: deck
-    }))
+    return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((results) => {
+        const data = JSON.parse(results);
+        data[ key ] = deck;
+        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify( data ))
+
+    });
+
 
     
 }

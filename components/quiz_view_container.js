@@ -19,11 +19,11 @@ class QuizViewContainer extends React.Component {
     render(){
 
         return(
-            <View>
+            <View style={styles.deckContainer}>
 
-                <Text>Quiz View Container</Text>
-                <Text>{this.props.decks[this.props.navigation.state.params.entryId].deck_name}</Text>
-                <Button title={"Start"} onPress={this.StartQuiz}/>
+                <Text style={styles.textHeader}>Take a quiz</Text>
+                <Text style={styles.deckTitle}>{this.props.decks[this.props.navigation.state.params.entryId].deck_name}</Text>
+                <Button title={"Start Quiz"} onPress={this.StartQuiz}/>
 
                 {this.state.ShowQuiz ? <QuizView navigation={this.props.navigation} deck_id={this.props.navigation.state.params.entryId}/>
                     :
@@ -41,6 +41,42 @@ class QuizViewContainer extends React.Component {
 
 
 }
+
+const styles = StyleSheet.create({
+    deckContainer: {
+        flex:1,
+        marginTop: 15,
+        marginBottom: 15,
+        marginLeft: 15,
+        marginRight: 15,
+        borderWidth: 1,
+        borderColor: "#4c3223",
+
+        alignItems: 'stretch',
+        borderRadius: 3,
+
+    },
+
+
+    deckTitle: {
+        textAlign: 'center',
+        fontSize: 18,
+        backgroundColor: '#d0cdcd',
+    },
+    textHeader: {
+        textAlign: 'center',
+        fontSize: 20,
+        backgroundColor: '#d0cdcd',
+
+
+
+    }
+
+
+
+
+
+});
 
 
 function mapStateToProps({decks}) {

@@ -19,22 +19,37 @@ const NavTab = createBottomTabNavigator({
 
 
 
-const Stack = createStackNavigator({
+const Stack = createStackNavigator(
+    {
+        Home:{
+            screen: NavTab,
+        },
+        IndividualDeckView: {
+            screen:IndividualDeckView
+        },
+        AddCardView:{
+            screen:AddCardView
+        },
+        QuizView:{
+           screen: QuizViewContainer
+        },
+    },
+    {
+        initialRouteName: 'Home',
+        defaultNavigationOptions:{
+            headerStyle: {
+                backgroundColor: '#f4511e',
+                height: 30
 
-    Home:{
-        screen: NavTab,
-    },
-    IndividualDeckView: {
-        screen:IndividualDeckView
-    },
-    AddCardView:{
-        screen:AddCardView
-    },
-    QuizView:{
-       screen: QuizViewContainer
+            }
+
+        }
     }
 
-})
+
+
+
+    );
 
 
 const App = createAppContainer(Stack)
@@ -60,7 +75,7 @@ class MainViewContainer extends React.Component {
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'stretch', height: this.height }}>
                 <StatusBar/>
                 <View style={{height: this.height}}/>
-                <Text style={styles.textTitle}>Your cool guy cards</Text>
+                <Text style={styles.textTitle}> Your Cool Guy Decks </Text>
                 <App/>
             </View>
 
@@ -76,6 +91,7 @@ const styles = StyleSheet.create({
         paddingTop: 15,
         textAlign: 'center',
         fontSize: 18,
+        borderBottomColor: '#2a2722'
 
 
 

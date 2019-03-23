@@ -20,10 +20,17 @@ class QuizViewContainer extends React.Component {
 
         return(
             <View>
+
                 <Text>Quiz View Container</Text>
                 <Text>{this.props.decks[this.props.navigation.state.params.entryId].deck_name}</Text>
                 <Button title={"Start"} onPress={this.StartQuiz}/>
-                <QuizView navigation={this.props.navigation} deck_id={this.props.navigation.state.params.entryId}/>
+
+                {this.state.ShowQuiz ? <QuizView navigation={this.props.navigation} deck_id={this.props.navigation.state.params.entryId}/>
+                    :
+                    <View><Text>Click To Start Quiz</Text></View>
+                }
+
+
 
 
             </View>

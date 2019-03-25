@@ -84,8 +84,6 @@ class QuizView extends React.Component {
 
         })
 
-
-
     }
 
 
@@ -101,7 +99,7 @@ class QuizView extends React.Component {
         return(
 
             <View>
-                <Text>Quiz View</Text>
+                <Text>Take Er' Qerrz</Text>
 
                 {!this.state.deckAtEOL && (<CardAtIndex card={this.props.shuffledDeck[this.state.index]}/>)}
                 {this.state.deckAtEOL && (<Button title={"Show Score"} onPress={this.toggleFinalScoreView}/>)}
@@ -110,6 +108,7 @@ class QuizView extends React.Component {
                 {!this.state.deckAtEOL && (<TextInput
                     value={this.state.givenAnswer}
                     onChangeText={this.updateQuestionInput}
+                    placeholder="Enter Answer"
                 />)}
                 {this.state.showFinalScoreView && (<FinalScoreView correct={this.state.correctAnswer}
                                                                    incorrect={this.state.incorrectAnswer}/>)}
@@ -126,8 +125,20 @@ class QuizView extends React.Component {
     }
 
 
-
 }
+
+
+const styles = StyleSheet.create({
+
+    container: {},
+    textHeader: {},
+    answerInput: {},
+    buttons: {}
+
+
+
+})
+
 
 
 function mapStateToProps({decks}, ownProps) {

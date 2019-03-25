@@ -3,7 +3,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import QuizView from './quiz_card_view'
 
 class QuizViewContainer extends React.Component {
@@ -11,9 +11,21 @@ class QuizViewContainer extends React.Component {
     state = {
         ShowQuiz:false
 
-    }
+    };
 
-    StartQuiz = () => {this.setState({ShowQuiz:true})}
+    StartQuiz = () => {
+        if (this.props.decks[this.props.navigation.state.params.entryId].cards.length > 0) {
+
+            this.setState({ShowQuiz:true})
+        } else {
+            Alert.alert("No Cards in Deck", "Pleas create a card to continue")
+
+        }
+
+
+
+
+    }
 
 
     render(){
@@ -23,7 +35,10 @@ class QuizViewContainer extends React.Component {
 
                 <Text style={styles.textHeader}>Take a quiz</Text>
                 <Text style={styles.deckTitle}>{this.props.decks[this.props.navigation.state.params.entryId].deck_name}</Text>
-                <Button title={"Start Quiz"} onPress={this.StartQuiz}/>
+
+
+                {!this.state.ShowQuiz && (<Button title={"Start Quiz"} onPress={this.StartQuiz}/>)}
+
 
                 {this.state.ShowQuiz ? <QuizView navigation={this.props.navigation} deck_id={this.props.navigation.state.params.entryId}/>
                     :

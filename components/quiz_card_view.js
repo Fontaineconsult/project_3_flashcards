@@ -7,7 +7,7 @@ import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import { YatesShuffle } from "../utilities/deckObject";
 import  CardAtIndex  from  "./card_at_index_view"
 import FinalScoreView from "./final_score_view"
-
+import {clearLocalNotification} from "../utilities/deckObject"
 
 
 class QuizView extends React.Component {
@@ -86,7 +86,7 @@ class QuizView extends React.Component {
 
     };
     toggleFinalScoreView = () => {
-
+        clearLocalNotification();
         this.setState({
             showFinalScoreView: true
 

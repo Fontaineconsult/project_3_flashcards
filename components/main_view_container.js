@@ -64,9 +64,8 @@ class MainViewContainer extends React.Component {
 
 
     componentDidMount() {
-        clearLocalNotification()
-        let all_decks = loadDecksFromStorage()
-        setLocalNotification()
+        let all_decks = loadDecksFromStorage();
+        setLocalNotification();
         this.props.dispatch(all_decks)
 
     }

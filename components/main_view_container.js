@@ -10,7 +10,7 @@ import QuizViewContainer from "./quiz_view_container"
 import {loadDecksFromStorage} from "../actions/shared"
 import { connect } from 'react-redux'
 import {clearAsyncStorage} from "../utilities/storage"
-import {setLocalNotification, clearLocalNotification} from "../utilities/deckObject"
+import {setLocalNotification} from "../utilities/deckObject"
 
 
 const NavTab = createBottomTabNavigator({

@@ -10,10 +10,14 @@ export function loadDecksFromStorage() {
         return getAllDecks().then((decks) => {
 
             let obj_for_redux = {}
+            if (decks !== null) {
+                Object.keys(decks).forEach(key => {
+                    obj_for_redux[ key ] = decks[key][key]
+                });
 
-            Object.keys(decks).forEach(key => {
-               obj_for_redux[ key ] = decks[key][key]
-            });
+
+            }
+
             console.log("NEW OBHECT", obj_for_redux)
 
             dispatch(loadDecks(obj_for_redux))

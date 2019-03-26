@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 
 
@@ -27,16 +27,14 @@ class DeckListView extends React.Component {
     render() {
 
         return(
-            <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+            <ScrollView contentContainerStyle={styles.scrollContainer}>
                 {Object.keys(this.props.decks).map((id) =>(
                     <DeckListItem
                         key={this.props.decks[id].deck_id} deck={this.props.decks[id]}
                         navProp={this.props.navigation}
                     />
                 ))}
-
-
-            </View>
+            </ScrollView>
 
         )
     }
@@ -50,6 +48,12 @@ class DeckListView extends React.Component {
 
 
 const styles = StyleSheet.create({
+    scrollContainer: {
+        paddingVertical: 20
+
+
+    },
+
     deckListItem: {
         flex: 1,
         backgroundColor: '#dcdcd7',
@@ -65,6 +69,7 @@ const styles = StyleSheet.create({
         marginRight: 4,
         shadowColor: '#0e0b09',
         shadowOffset: {width:5, height: 5},
+        paddingBottom: 5
     },
     deckListTitleText: {
         marginBottom: 5,

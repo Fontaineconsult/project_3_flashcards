@@ -1,7 +1,7 @@
 // main view is the primary view, contains list of all the decks
 import {createBottomTabNavigator, createAppContainer, createStackNavigator, SafeAreaView} from 'react-navigation'
 import React from 'react';
-import {StatusBar, StyleSheet, Text, View, Platform} from 'react-native';
+import {StatusBar, StyleSheet, Text, View, Platform, Animated} from 'react-native';
 import AddDeckView from './add_deck_view'
 import DeckListView from './deck_list_container'
 import IndividualDeckView from "./individual_deck_view";
@@ -10,6 +10,8 @@ import QuizViewContainer from "./quiz_view_container"
 import {loadDecksFromStorage} from "../actions/shared"
 import { connect } from 'react-redux'
 import {clearAsyncStorage} from "../utilities/storage"
+import {setLocalNotification} from "../utilities/deckObject"
+
 
 const NavTab = createBottomTabNavigator({
     Decks: DeckListView,
@@ -64,7 +66,7 @@ class MainViewContainer extends React.Component {
     componentDidMount() {
 
         let all_decks = loadDecksFromStorage()
-
+        setLocalNotification()
         this.props.dispatch(all_decks)
 
     }

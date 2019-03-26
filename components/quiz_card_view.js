@@ -3,7 +3,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
 import { YatesShuffle } from "../utilities/deckObject";
 import  CardAtIndex  from  "./card_at_index_view"
 import FinalScoreView from "./final_score_view"
@@ -47,20 +47,42 @@ class QuizView extends React.Component {
         }))
     };
     answerCorrect = () => {
-        this.incrementIndex()
-        this.setState({
-            correctAnswer: this.state.correctAnswer + 1
 
-        })
+        if (this.state.givenAnswer.length > 0) {
+
+            this.incrementIndex()
+            this.setState({
+                correctAnswer: this.state.correctAnswer + 1,
+                givenAnswer: ''
+            })
+
+
+        } else {
+            Alert.alert("Provide an Answer","Enter Something!!")
+
+        }
+
 
 
     };
     answerIncorrect = () => {
-        this.incrementIndex()
-        this.setState(() => ({
-            incorrectAnswer: this.state.incorrectAnswer + 1
 
-        }))
+        if (this.state.givenAnswer.length > 0) {
+            this.incrementIndex();
+            this.setState(() => ({
+                incorrectAnswer: this.state.incorrectAnswer + 1,
+                givenAnswer: ''
+
+            }))
+
+
+        } else {
+            Alert.alert("Provide an Answer","Enter Something!!")
+
+
+        }
+
+
 
     };
     toggleFinalScoreView = () => {
@@ -99,13 +121,14 @@ class QuizView extends React.Component {
         return(
 
             <View>
-                <Text>Take Er' Qerrz</Text>
-
+                <Text style={styles.textHeader}>Take Er' Qerrz</Text>
+                {!this.state.showFinalScoreView && (<Text style={styles.textHeader}>{this.props.deckLength - (this.state.correctAnswer + this.state.incorrectAnswer)}  Cards Remaining</Text>)}
                 {!this.state.deckAtEOL && (<CardAtIndex card={this.props.shuffledDeck[this.state.index]}/>)}
                 {this.state.deckAtEOL && (<Button title={"Show Score"} onPress={this.toggleFinalScoreView}/>)}
-                {!this.state.showFinalScoreView && (<Text>{this.props.deckLength - (this.state.correctAnswer + this.state.incorrectAnswer)}  Cards Remaining</Text>)}
+
 
                 {!this.state.deckAtEOL && (<TextInput
+                    style={styles.textHeader}
                     value={this.state.givenAnswer}
                     onChangeText={this.updateQuestionInput}
                     placeholder="Enter Answer"
@@ -114,9 +137,11 @@ class QuizView extends React.Component {
                                                                    incorrect={this.state.incorrectAnswer}/>)}
                 {this.state.showFinalScoreView && (<Button title={"Restart Quiz"} onPress={this.resetQuiz}/>)}
                 {this.state.showFinalScoreView && (<Button title={"Back to Deck"} onPress={() => this.props.navigation.navigate("IndividualDeckView", { entryId: this.props.deck_id})}/>)}
-                {!this.state.deckAtEOL && (<Button title={"Correct"} onPress={this.answerCorrect}/>)}
-                {!this.state.deckAtEOL && (<Button title={"Incorrect"} onPress={this.answerIncorrect}/>)}
 
+                <View style={styles.answerButtons}>
+                    {!this.state.deckAtEOL && (<Button title={"Correct"} onPress={this.answerCorrect}/>)}
+                    {!this.state.deckAtEOL && (<Button title={"Incorrect"} onPress={this.answerIncorrect}/>)}
+                </View>
             </View>
 
 
@@ -131,9 +156,20 @@ class QuizView extends React.Component {
 const styles = StyleSheet.create({
 
     container: {},
-    textHeader: {},
-    answerInput: {},
-    buttons: {}
+    textHeader: {
+        textAlign: 'center'
+    },
+    answerInput: {
+        textAlign: 'center',
+        fontSize: 18,
+
+    },
+    buttons: {},
+    answerButtons: {
+        flexDirection: "row",
+        justifyContent: "space-around"
+
+    }
 
 
 

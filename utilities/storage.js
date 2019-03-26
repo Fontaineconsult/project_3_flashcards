@@ -22,6 +22,7 @@ export function saveDeckToAsync (deck, key) {
 
     return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((results) => {
         const data = JSON.parse(results);
+        console.log("DECKS LOADED", data)
         data[ key ] = deck;
         AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify( data ))
 
@@ -35,11 +36,11 @@ export function saveCardToStorage(deck_key, card) {
 
     return AsyncStorage.getItem(ASYNC_STORAGE_KEY).then((results) => {
 
-        const data = JSON.parse(results)
-        let deck = data[deck_key]
-        deck[deck_key].cards.push(card)
-        let deck_to_return = {[deck_key]:deck}
-        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify( deck_to_return ))
+        const data = JSON.parse(results);
+        data[deck_key][deck_key].cards.push(card);
+        AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify( data ))
+
+
         return true
     }).catch(console.log("Isn't Right"))
 
@@ -54,7 +55,6 @@ export function queryStorage() {
     AsyncStorage.getAllKeys((err, keys) => {
         AsyncStorage.multiGet(keys, (error, stores) => {
             stores.map((result, i, store) => {
-                console.log({ [store[i][0]]: store[i][1] });
                 return true;
             });
         });

@@ -12,7 +12,7 @@ It is a React Native application built using Expo and tested only on Android.
   * An Andriod emulator is recommeneded but not required https://docs.expo.io/versions/latest/workflow/android-studio-emulator/
   
 
-To run.
+## To run. https://docs.expo.io/versions/v27.0.0/introduction/faq/#how-do-i-get-my-existing-react
 
 Copy the Git Repo to a folder.
 
@@ -25,6 +25,8 @@ run npm intall or yarn add
 run expo start
 
 make sure your android emulator is running or use the Expo tunnel to directly open the app on your andriod phone.
+
+Thanks!
 
 
 

@@ -10,7 +10,7 @@ import QuizViewContainer from "./quiz_view_container"
 import {loadDecksFromStorage} from "../actions/shared"
 import { connect } from 'react-redux'
 import {clearAsyncStorage} from "../utilities/storage"
-import {setLocalNotification} from "../utilities/deckObject"
+import {setLocalNotification, clearLocalNotification} from "../utilities/deckObject"
 
 
 const NavTab = createBottomTabNavigator({
@@ -64,7 +64,7 @@ class MainViewContainer extends React.Component {
 
 
     componentDidMount() {
-
+        clearLocalNotification()
         let all_decks = loadDecksFromStorage()
         setLocalNotification()
         this.props.dispatch(all_decks)
